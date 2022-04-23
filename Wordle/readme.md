@@ -8,7 +8,7 @@ Run this followed commands:
 # Install dependencies (only the first time)
 npm install
 
-# Run the backend server at localhost:8080
+# Run the backend server at localhost:8000
 npm run start:backend
 
 
