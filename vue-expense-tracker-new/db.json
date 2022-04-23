@@ -1,0 +1,36 @@
+{
+  "expenses": [
+    {
+      "item": "Pizza and Chips",
+      "amount": "10",
+      "category": "Food",
+      "location": "Glasgow",
+      "spent_on": "2022-01-30",
+      "id": 3
+    },
+    {
+      "item": "Laptop",
+      "amount": "600",
+      "category": "Electronic Item",
+      "location": "Edinburgh",
+      "spent_on": "2022-01-31",
+      "id": 4
+    },
+    {
+      "item": "sushi",
+      "amount": "30",
+      "category": "Food",
+      "location": "Norwich",
+      "spent_on": "2022-01-07",
+      "id": 5
+    },
+    {
+      "item": "Phone",
+      "amount": "150",
+      "category": "Electronic Item",
+      "location": "NC",
+      "spent_on": "2022-02-12",
+      "id": 6
+    }
+  ]
+}
