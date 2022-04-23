@@ -1,6 +1,5 @@
-import React, { useEffect, useState, Component } from "react";
-import { getExpenses, setExpense } from "./services/expense_service";
-import { FiEdit2 } from "react-icons/";
+import React, { useEffect, useState, } from "react";
+import { getExpenses, } from "./services/expense_service";
 import NewExpense from "./components/NewExpense/NewExpense";
 import Expenses from "./components/Expenses/Expenses";
 
