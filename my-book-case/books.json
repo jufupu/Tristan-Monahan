@@ -1,0 +1,16 @@
+{
+    "Way of Kings": {
+      "author": "Brandon Sanderson",
+      "coverImage": "img/wayofkings.jpg",
+      "tagline": "The first book in the epic fantasy series The Stormlight Archive.",
+      "description": "The Way of Kings is set in the world of Roshar, a land of stone and storms...",
+      "personalThoughts": "The Way of Kings is a masterpiece of world-building and character development..."
+    },
+    "Words of Radiance": {
+      "author": "Brandon Sanderson",
+      "coverImage": "img/wordsofradiance.jpg",
+      "tagline": "The second book in the Stormlight Archive series.",
+      "description": "...",
+      "personalThoughts": "..."
+    }
+  }
