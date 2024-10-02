@@ -51,61 +51,48 @@ document.addEventListener('DOMContentLoaded', function() {
     const sliderContainer = document.querySelector('.slider-container');
     
     sliderContainer.addEventListener('click', function(e) {
-        console.log('Click event on slider container');
         if (e.target.classList.contains('details-btn')) {
-            console.log('Details button clicked');
             const slide = e.target.closest('.slider-img');
             if (slide && slide.classList.contains('active')) {
-                const title = slide.querySelector('h1').textContent;
-                console.log('Fetching details for:', title);
-                fetchBookDetails(title);
-            } else {
-                console.log('Slide is not active or not found');
+                const bookId = e.target.getAttribute('data-book-id');
+                if (bookId) {
+                    fetchBookDetails(bookId);
+                } else {
+                    console.error('No book ID found on the details button');
+                }
             }
         }
     });
 
-    function fetchBookDetails(bookTitle) {
-        console.log('Fetching book details for:', bookTitle);
-        fetch('books.json')
+    function fetchBookDetails(bookId) {
+        fetch(`get_book_details.php?id=${bookId}`)
             .then(response => response.json())
             .then(data => {
-                console.log('Received data:', data);
-                const book = data[bookTitle];
-                if (book) {
-                    displayBookDetails(book, bookTitle);
-                } else {
-                    console.error('Book not found in data');
+                if (data.error) {
+                    console.error(data.error);
+                    return;
                 }
+                
+                displayBookDetails(data);
             })
-            .catch(error => {
-                console.error('Error fetching book data:', error);
-            });
+            .catch(error => console.error('Error:', error));
     }
 
-    function displayBookDetails(book, bookTitle) {
-        console.log('Attempting to display book details for:', bookTitle);
+    function displayBookDetails(book) {
         const detailsSection = document.getElementById('book-details');
-        if (!detailsSection) {
-            console.error('Book details section not found in HTML');
-            alert('Error: Book details section not found in HTML');
-            return;
-        }
-        
         detailsSection.innerHTML = `
-            <h2>${bookTitle}</h2>
-            <p><strong>Author:</strong> ${book.author}</p>
-            <p><strong>Description:</strong> ${book.description}</p>
-            <p><strong>Why I Love This Book:</strong> ${book.personalThoughts}</p>
+            <h2>${book.title}</h2>
+            <h3>${book.author}</h3>
+            <p>${book.description}</p>
         `;
         
-        console.log('Book details HTML set');
-        
-        detailsSection.style.display = 'block';
-        console.log('Book details section display set to block');
-        
-        // Scroll to the details section
-        detailsSection.scrollIntoView({ behavior: 'smooth' });
-        console.log('Scrolled to book details section');
+        // Show the details section with a GSAP animation
+        gsap.to(detailsSection, {
+            duration: 0.5,
+            opacity: 1,
+            y: 0,
+            ease: "power2.out",
+            onStart: () => detailsSection.style.display = 'block'
+        });
     }
 });
