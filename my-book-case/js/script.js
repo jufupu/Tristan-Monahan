@@ -52,47 +52,77 @@ document.addEventListener('DOMContentLoaded', function() {
     
     sliderContainer.addEventListener('click', function(e) {
         if (e.target.classList.contains('details-btn')) {
-            const slide = e.target.closest('.slider-img');
-            if (slide && slide.classList.contains('active')) {
-                const bookId = e.target.getAttribute('data-book-id');
-                if (bookId) {
-                    fetchBookDetails(bookId);
-                } else {
-                    console.error('No book ID found on the details button');
-                }
+            const bookId = e.target.getAttribute('data-book-id');
+            if (bookId) {
+                // Redirect to the book-details page with the book ID as a parameter
+                window.location.href = `book-details.php?id=${bookId}`;
+            } else {
+                console.error('No book ID found on the details button');
             }
         }
     });
 
-    function fetchBookDetails(bookId) {
-        fetch(`get_book_details.php?id=${bookId}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    console.error(data.error);
-                    return;
-                }
-                
-                displayBookDetails(data);
-            })
-            .catch(error => console.error('Error:', error));
-    }
+    // Remove the fetchBookDetails and displayBookDetails functions as they're no longer needed here
 
-    function displayBookDetails(book) {
-        const detailsSection = document.getElementById('book-details');
-        detailsSection.innerHTML = `
-            <h2>${book.title}</h2>
-            <h3>${book.author}</h3>
-            <p>${book.description}</p>
-        `;
-        
-        // Show the details section with a GSAP animation
-        gsap.to(detailsSection, {
-            duration: 0.5,
-            opacity: 1,
-            y: 0,
-            ease: "power2.out",
-            onStart: () => detailsSection.style.display = 'block'
+    // Simple GSAP animation for details buttons
+    const detailsButtons = document.querySelectorAll('.details-btn');
+
+    detailsButtons.forEach(button => {
+        // Hover animation
+        button.addEventListener('mouseenter', () => {
+            gsap.to(button, {
+                scale: 1.2,
+                duration: 0.3,
+                ease: 'power1.out'
+            });
         });
-    }
+
+        button.addEventListener('mouseleave', () => {
+            gsap.to(button, {
+                scale: 1,
+                duration: 0.3,
+                ease: 'power1.out'
+            });
+        });
+
+        // Click animation
+        button.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent default action temporarily
+            
+            gsap.to(button, {
+                scale: 1.2,
+                duration: 0.1,
+                yoyo: true,
+                repeat: 1,
+                onComplete: () => {
+                    // Navigate to book details page after animation
+                    const bookId = button.getAttribute('data-book-id');
+                    if (bookId) {
+                        window.location.href = `book-details.php?id=${bookId}`;
+                    }
+                }
+            });
+        });
+    });
+
+    const progressBars = document.querySelectorAll('.progress-bar');
+    
+    const animateProgressBar = (bar) => {
+        const value = bar.getAttribute('aria-valuenow');
+        bar.style.width = '0%';
+        setTimeout(() => {
+            bar.style.width = value + '%';
+        }, 100);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateProgressBar(entry.target);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    progressBars.forEach(bar => observer.observe(bar));
 });

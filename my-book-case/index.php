@@ -54,10 +54,6 @@ $books = $result->fetch_all(MYSQLI_ASSOC);
                 <?php endforeach; ?>
             </div>
         </section>
-        
-        <section id="book-details" style="display: none;">
-            <!-- Book details will be inserted here by JavaScript -->
-        </section>
     </main>
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
