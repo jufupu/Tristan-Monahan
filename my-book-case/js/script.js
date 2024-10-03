@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', function () {
     img.addEventListener('click', function () {
       // Remove active class from all images
       sliderImages.forEach(image => image.classList.remove('active'));
-      
+
       // Add active class to clicked image
       this.classList.add('active');
-      
+
       // GSAP animation
       gsap.to('.slider-img', {
         duration: 0.7,
@@ -20,14 +20,14 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         ease: 'power2.inOut'
       });
-      
+
       gsap.to(this, {
         duration: 0.7,
         width: '766px',
         height: '750px',
         ease: 'power2.inOut'
       });
-      
+
       // Animate details
       gsap.to(this.querySelectorAll('.details h2, .details p'), {
         duration: 0.5,
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ease: 'power2.out',
         delay: 0.3
       });
-      
+
       // Hide other images' details
       gsap.to(document.querySelectorAll('.slider-img:not(.active) .details h2, .slider-img:not(.active) .details p'), {
         duration: 0.3,
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('DOMContentLoaded', function() {
     const sliderContainer = document.querySelector('.slider-container');
-    
+
     if (sliderContainer) {
         sliderContainer.addEventListener('click', function(e) {
             if (e.target.classList.contains('details-btn')) {
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Click animation
         button.addEventListener('click', (e) => {
             e.preventDefault(); // Prevent default action temporarily
-            
+
             gsap.to(button, {
                 scale: 1.2,
                 duration: 0.1,
@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (ratingsDataElement) {
         const progressEndValues = JSON.parse(ratingsDataElement.textContent || '[]'); // Fallback to an empty array if textContent is null
-        
+
         const speed = 10;
 
         circularProgressElements.forEach((circularProgress, index) => {

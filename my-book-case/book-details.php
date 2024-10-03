@@ -31,7 +31,7 @@ function fetchBookDetailsFromDatabase($id) {
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // Fetch ratings from the database
-        $stmt = $pdo->query("SELECT 
+        $stmt = $pdo->query("SELECT
             MAX(CASE WHEN category = 'World' THEN rating END) AS world_rating,
             MAX(CASE WHEN category = 'Characters' THEN rating END) AS character_rating,
             MAX(CASE WHEN category = 'Story' THEN rating END) AS story_rating
@@ -104,7 +104,7 @@ $backgroundImage = htmlspecialchars($bookDetails['cover_url'] ?? '../images/defa
             <div class="col-md-8">
                 <h1 class="book-title"><?php echo htmlspecialchars($bookDetails['title']); ?></h1>
                 <h2 class="book-author">By <?php echo htmlspecialchars($bookDetails['author']); ?></h2>
-                
+
                 <div class="book-rating mb-4">
                     <?php
                     $rating = isset($bookDetails['rating']) ? $bookDetails['rating'] : 0;
@@ -166,10 +166,10 @@ $backgroundImage = htmlspecialchars($bookDetails['cover_url'] ?? '../images/defa
 
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <!-- GSAP library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    
+
     <!-- Custom JavaScript -->
     <script src="js/script.js"></script>
 </body>
