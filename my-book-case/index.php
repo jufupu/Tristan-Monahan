@@ -17,7 +17,7 @@ $books = $result->fetch_all(MYSQLI_ASSOC);
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
@@ -44,7 +44,7 @@ $books = $result->fetch_all(MYSQLI_ASSOC);
                 <?php foreach ($books as $index => $book): ?>
                     <div class="slider-img <?php echo $index === 3 ? 'active' : ''; ?>">
                         <img src="<?php echo htmlspecialchars($book['cover_url']); ?>" alt="<?php echo htmlspecialchars($book['title']); ?>" />
-                        <h1><?php echo htmlspecialchars($book['title']); ?></h1>
+                        <h1 class="slider-title"><?php echo htmlspecialchars($book['title']); ?></h1>
                         <div class="details">
                             <h2><?php echo htmlspecialchars($book['title']); ?></h2>
                             <p><?php echo htmlspecialchars($book['author']); ?></p>
@@ -53,10 +53,6 @@ $books = $result->fetch_all(MYSQLI_ASSOC);
                     </div>
                 <?php endforeach; ?>
             </div>
-        </section>
-        
-        <section id="book-details" style="display: none;">
-            <!-- Book details will be inserted here by JavaScript -->
         </section>
     </main>
     <!-- Bootstrap JS Bundle with Popper -->
