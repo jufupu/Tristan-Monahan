@@ -49,7 +49,7 @@ $books = $result->fetch_all(MYSQLI_ASSOC);
                             <h2><?php echo htmlspecialchars($book['title']); ?></h2>
                             <p><?php echo htmlspecialchars($book['author']); ?></p>
                         </div>
-                        <button class="details-btn" data-book-id="<?php echo $book['id']; ?>">Details</button>
+                        <button class="details-btn" data-book-id="<?php echo $book['id']; ?>">Detailsssssss</button>
                     </div>
                 <?php endforeach; ?>
             </div>
