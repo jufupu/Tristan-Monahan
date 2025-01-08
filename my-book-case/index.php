@@ -20,24 +20,25 @@ $books = $result->fetch_all(MYSQLI_ASSOC);
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-        <div class="container-fluid">
-              <a class="navbar-brand" href="#">my favourite books</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">link</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </nav>
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">my favourite books</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php">Home</a>
+                </li>
+                <li class="nav-item">
+                    <!-- Add this link -->
+                    <a class="nav-link" href="add-book.php">Add Book</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
     <main>
         <section class="slider-container">
             <div class="slider-images">
@@ -49,7 +50,7 @@ $books = $result->fetch_all(MYSQLI_ASSOC);
                             <h2><?php echo htmlspecialchars($book['title']); ?></h2>
                             <p><?php echo htmlspecialchars($book['author']); ?></p>
                         </div>
-                        <button class="details-btn" data-book-id="<?php echo $book['id']; ?>">Detailsssssss</button>
+                        <button class="details-btn" data-book-id="<?php echo $book['id']; ?>">Details</button>
                     </div>
                 <?php endforeach; ?>
             </div>

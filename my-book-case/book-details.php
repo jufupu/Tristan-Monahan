@@ -30,21 +30,24 @@ function fetchBookDetailsFromDatabase($id) {
         $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // Fetch ratings from the database
-        $stmt = $pdo->query("SELECT
+        // Fetch ratings for this specific book
+        $stmt = $pdo->prepare("SELECT 
             MAX(CASE WHEN category = 'World' THEN rating END) AS world_rating,
             MAX(CASE WHEN category = 'Characters' THEN rating END) AS character_rating,
             MAX(CASE WHEN category = 'Story' THEN rating END) AS story_rating
-            FROM ratings");
-
+            FROM ratings 
+            WHERE book_id = :book_id");
+        $stmt->execute(['book_id' => $id]);
         $ratings = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        // Fetch other book details
         $stmt = $pdo->prepare("SELECT * FROM books WHERE id = :id");
         $stmt->execute(['id' => $id]);
         $book = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($book) {
-            return $book;
+            // Combine book details with ratings
+            return array_merge($book, ['ratings' => $ratings]);
         } else {
             echo "No book found with ID: $id<br>";
             return false;
@@ -77,20 +80,10 @@ $backgroundImage = htmlspecialchars($bookDetails['cover_url'] ?? '../images/defa
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">link</a>
-                  </li>
-                </ul>
-              </div>
         </div>
     </nav>
     <div class="container py-5 mt-4">
-        <div class="row book-details-container">
+        <div class="row book-details-container" id="book-details">
             <div class="col-md-4">
                 <div class="book-cover-container mb-4">
                     <img src="<?php echo htmlspecialchars($bookDetails['cover_url']); ?>" alt="<?php echo htmlspecialchars($bookDetails['title']); ?> Cover" class="img-fluid book-cover">
@@ -158,7 +151,8 @@ $backgroundImage = htmlspecialchars($bookDetails['cover_url'] ?? '../images/defa
                 </div>
 
                 <div class="text-center">
-                    <a href="index.php" class="btn btn-primary btn-lg">Back to Book List</a>
+                    <a href="index.php" class="btn btn-primary btn-lg">Back</a>
+                    <a href="update-book.php?id=<?php echo htmlspecialchars($bookId); ?>" class="btn btn-secondary btn-lg">Update</a>
                 </div>
             </div>
         </div>
@@ -172,5 +166,15 @@ $backgroundImage = htmlspecialchars($bookDetails['cover_url'] ?? '../images/defa
 
     <!-- Custom JavaScript -->
     <script src="js/script.js"></script>
+
+    <script id="ratings-data" type="application/json">
+        [
+            <?php 
+            echo ($bookDetails['ratings']['world_rating'] ?? 0) . ', ' .
+                 ($bookDetails['ratings']['character_rating'] ?? 0) . ', ' .
+                 ($bookDetails['ratings']['story_rating'] ?? 0);
+            ?>
+        ]
+    </script>
 </body>
 </html>
