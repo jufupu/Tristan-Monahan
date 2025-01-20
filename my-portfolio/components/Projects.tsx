@@ -10,22 +10,22 @@ const Projects = () => {
             thumbnail: '/img/fitshop_rebranding.png',
         },
         {
-            title: 'AI-Powered Personal Assistant',
-            description: 'Developed a personal assistant using React.js, Node.js, and OpenAI API, enabling users to interact with a chatbot for task automation and information retrieval.',
+            title: 'ShowFlow - A Musical Theatre Centralisation App',
+            description: 'My current project, developing a cross-platform mobile application using React Native, TypeScript, and Expo to centralise and streamline theatre productions.',
             link: 'https://github.com/yourusername/project1',
-            thumbnail: '/img/ai-assistant-thumbnail.jpg',
+            thumbnail: '/img/showflow.png',
         },
         {
-            title: 'Virtual Bookshelf',
+            title: 'BookNook - Virtual Bookshelf',
             description: 'Created a virtual bookshelf using HTML5, CSS, PHP, and SQL for the backend, to store and record my favourite books. Allowing me to rate and review them.',
             link: 'https://github.com/jufupu/Tristan-Monahan/tree/main/my-book-case',
-            thumbnail: '/img/bookshelf-thumbnail.jpg',
+            thumbnail: '/img/booknook.png',
         },
         {
             title: 'Musical Theatre Script Learner',
             description: 'Created a Musical Theatre Script Learner application to aid in memorizing scripts and lyrics for performances. Technologies Used: C#, Windows Forms, SQLite, Basic Input Validation.',
             link: 'https://github.com/jufupu/Tristan-Monahan/tree/main/ScriptLearnerApp',
-            thumbnail: '/img/script-learner-thumbnail.jpg',
+            thumbnail: '/img/script_learning_app.png',
         }, 
     ];
     return (
