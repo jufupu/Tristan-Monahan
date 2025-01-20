@@ -74,6 +74,9 @@ pointer-events: none;
 .slider-images .slider-img:first-child, .slider-images .slider-img:last-child{
 height: 480px;
 }
+.slider-images .slider-img:nth-child(2), .slider-images .slider-img:nth-child(7){
+  height: 530px;
+}
 .slider-images .slider-img:nth-child(2), .slider-images .slider-img:nth-child(6){
 height: 560px;
 }

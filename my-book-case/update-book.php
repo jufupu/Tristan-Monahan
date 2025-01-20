@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">my favourite books</a>
+            <a class="navbar-brand" href="index.php">my favourite books</a>
         </div>
     </nav>
 
@@ -131,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Scroll down by a specific amount when the page loads
         window.onload = function() {
             window.scrollTo({
-                top: 900,  // Adjust this value to control how far down to scroll
+                top: 900, 
                 behavior: 'smooth'
             });
         };
