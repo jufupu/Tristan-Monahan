@@ -16,6 +16,7 @@ const Header = () => {
                     <h1 className="text-4xl font-semibold">Tristan Monahan</h1>
                     <p className="text-lg mt-2">Web Developer</p>
                     <p className="mt-4"><a href="mailto:tmona64@gmail.com" className="underline">tmona64@gmail.com</a></p>
+                    <p className="mt-4"><a href="https://www.linkedin.com/in/tristan-monahan-3ba8a81b8/" className="underline">LinkedIn</a></p>
                 </div>
             </header>
         </div>
