@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Header = () => {
     return (
-        <div className="flex items-center justify-center bg-gray-900 text-white">
+        <div className="flex items-center justify-center text-white">
             <header className="flex items-center justify-around py-20 w-full max-w-4xl">
                 <Image 
                     src="/img/pp.jpg" 

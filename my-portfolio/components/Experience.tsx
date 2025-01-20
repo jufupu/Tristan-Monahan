@@ -23,11 +23,11 @@ const Experience = () => {
 
     return (
         <>
-            <section className="py-10 px-5 bg-dark-blue">
+            <section className="py-10 px-5">
                 <h2 className="text-3xl font-medium text-white">Experience</h2>
                 <ul className="mt-4">
                     {experiences.map((exp, index) => (
-                        <li key={index} className="mb-6 p-4 bg-gray-700 rounded-lg">
+                        <li key={index} className="mb-6 p-4 bg-gray-800 rounded-lg">
                             <h3 className="font-semibold text-lg text-white">{exp.title}</h3>
                             <p className="text-gray-300">{exp.company} | {exp.duration}</p>
                             <p className="mt-2 text-gray-200">{exp.description}</p>

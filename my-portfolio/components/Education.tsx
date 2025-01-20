@@ -10,11 +10,11 @@ const Education = () => {
 
     return (
         <>
-            <section className="py-10 px-5 bg-dark-blue">
+            <section className="py-10 px-5">
                 <h2 className="text-3xl font-medium text-white">Education</h2>
                 <ul className="mt-4">
                     {education.map((edu, index) => (
-                        <li key={index} className="mb-4 p-4 bg-gray-700 rounded-lg">
+                        <li key={index} className="mb-4 p-4 bg-gray-800 rounded-lg">
                             <h3 className="font-semibold text-lg text-white">{edu.degree}</h3>
                             <p className="text-gray-300">{edu.institution} | {edu.year}</p>
                         </li>
