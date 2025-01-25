@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { Calendar } from '@/components/Calendar';
@@ -9,43 +9,64 @@ import { useEvents } from '@/hooks/useEvents';
 
 export function HomeScreen() {
   const { events, loading } = useEvents();
+  const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth());
+
+  const sampleEvents = [
+    {
+      id: '1',
+      title: "Sample Event 1",
+      time: "10:00 AM - 12:00 PM",
+      duration: "2 hours",
+      location: "Conference Room",
+      date: "2023-10-15",
+      participants: ['P', 'E'],
+      variant: "purple" as const
+    },
+    {
+      id: '2',
+      title: "Sample Event 2",
+      time: "1:00 PM - 3:00 PM",
+      duration: "2 hours",
+      location: "Main Hall",
+      date: "2023-10-15",
+      participants: ['A', 'B'],
+      variant: "teal" as const
+    }
+  ];
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <View>
-          <Text style={styles.title}>Good Morning.</Text>
-          <Text style={styles.subtitle}>GLOC</Text>
-        </View>
-        <TouchableOpacity style={styles.notificationButton}>
-          <Feather name="bell" size={20} color="#141558" />
-        </TouchableOpacity>
+    <View style={styles.container}>
+      <ScrollView 
+        style={styles.scrollView} 
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
+        <SafeAreaView>
+          <View style={styles.header}>
+            <View>
+              <Text style={styles.title}>Good Morning.</Text>
+              <Text style={styles.subtitle}>GLOC</Text>
+            </View>
+            <TouchableOpacity style={styles.notificationButton}>
+              <Feather name="bell" size={20} color="#141558" />
+            </TouchableOpacity>
+          </View>
+
+          <MonthSelector selectedMonth={selectedMonth} setSelectedMonth={setSelectedMonth} />
+          <Calendar selectedMonth={selectedMonth} />
+
+          <View style={styles.eventsContainer}>
+            {sampleEvents.map(event => (
+              <EventCard key={event.id} {...event} />
+            ))}
+          </View>
+        </SafeAreaView>
+      </ScrollView>
+
+      <View style={styles.navigationContainer}>
+        <Navigation />
       </View>
-
-      <MonthSelector />
-      <Calendar />
-
-      <View style={styles.eventsContainer}>
-        {loading ? (
-          <Text>Loading events...</Text>
-        ) : (
-          events.map((event) => (
-            <EventCard
-              key={event.id}
-              title={event.title}
-              time={event.time}
-              duration={event.duration}
-              location={event.location}
-              date={event.date}
-              participants={event.participants}
-              variant={event.variant}
-            />
-          ))
-        )}
-      </View>
-
-      <Navigation />
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -53,7 +74,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f5f6f8',
-    paddingBottom: 80,
+  },
+  scrollView: {
+    flex: 1,
+  },
+  scrollContent: {
+    paddingBottom: 100, // Increased padding to ensure content doesn't hide behind navigation
   },
   header: {
     flexDirection: 'row',
@@ -77,6 +103,16 @@ const styles = StyleSheet.create({
   },
   eventsContainer: {
     padding: 16,
-    marginBottom: 80,
+  },
+  navigationContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: 'white',
+    borderTopWidth: 1,
+    borderTopColor: '#e5e5e5',
+    zIndex: 1000,
+    elevation: 5,
   },
 }); 

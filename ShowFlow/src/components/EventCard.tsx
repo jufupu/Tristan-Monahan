@@ -1,47 +1,106 @@
-import { Clock, MapPin } from "lucide-react"
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { Feather } from '@expo/vector-icons';
 
 interface EventCardProps {
-  title: string
-  time: string
-  duration: string
-  location: string
-  date: string
-  participants: string[]
-  variant: "purple" | "teal"
+  title: string;
+  time: string;
+  duration: string;
+  location: string;
+  date: string;
+  participants: string[];
+  variant: 'purple' | 'teal';
 }
 
-export function EventCard({ title, time, duration, location, date, participants, variant }: EventCardProps) {
-  const bgColor = variant === "purple" ? "bg-[#ae81cd]" : "bg-[#5dd9c1]"
+export function EventCard({ 
+  title, 
+  time, 
+  duration, 
+  location, 
+  date, 
+  participants, 
+  variant 
+}: EventCardProps) {
+  const backgroundColor = variant === 'purple' ? '#ae81cd' : '#5dd9c1';
 
   return (
-    <div className={`${bgColor} rounded-xl p-4 text-white`}>
-      <h3 className="text-xl font-semibold mb-2">{title}</h3>
-      <p className="text-sm opacity-90 mb-4">{duration}</p>
-
-      <div className="flex gap-4 mb-6">
+    <View style={[styles.container, { backgroundColor }]}>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.duration}>{duration}</Text>
+      <View style={styles.participants}>
         {participants.map((participant, i) => (
-          <div
+          <View
             key={i}
-            className={`w-8 h-8 rounded-full flex items-center justify-center
-              ${participant === "P" ? "bg-[#f68ca0]" : "bg-[#f7ba8c]"}`}
+            style={[
+              styles.participantCircle,
+              { backgroundColor: participant === 'P' ? '#f68ca0' : '#f7ba8c' }
+            ]}
           >
-            {participant}
-          </div>
+            <Text style={styles.participantText}>{participant}</Text>
+          </View>
         ))}
-      </div>
-
-      <div className="flex items-center gap-6">
-        <div className="flex items-center gap-2">
-          <Clock className="h-4 w-4" />
-          <span className="text-sm">{time}</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <MapPin className="h-4 w-4" />
-          <span className="text-sm">{location}</span>
-        </div>
-      </div>
-    </div>
-  )
+      </View>
+      <View style={styles.footer}>
+        <View style={styles.footerItem}>
+          <Feather name="clock" size={16} color="white" />
+          <Text style={styles.footerText}>{time}</Text>
+        </View>
+        <View style={styles.footerItem}>
+          <Feather name="map-pin" size={16} color="white" />
+          <Text style={styles.footerText}>{location}</Text>
+        </View>
+      </View>
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 16,
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: 'white',
+    marginBottom: 8,
+  },
+  duration: {
+    fontSize: 14,
+    color: 'white',
+    opacity: 0.9,
+  },
+  participants: {
+    flexDirection: 'row',
+    marginTop: 8,
+  },
+  participantCircle: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 4,
+  },
+  participantText: {
+    color: 'white',
+    fontSize: 12,
+  },
+  footer: {
+    flexDirection: 'row',
+    marginTop: 8,
+  },
+  footerItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: 16,
+  },
+  footerText: {
+    fontSize: 14,
+    color: 'white',
+    marginLeft: 4,
+  },
+});
 
  

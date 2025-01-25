@@ -4,24 +4,30 @@ import { ScrollView, TouchableOpacity, Text, StyleSheet } from 'react-native';
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", 
     "September", "October", "November", "December"];
 
-export function MonthSelector() {
+interface MonthSelectorProps {
+  selectedMonth: number;
+  setSelectedMonth: (month: number) => void;
+}
+
+export function MonthSelector({ selectedMonth, setSelectedMonth }: MonthSelectorProps) {
   return (
     <ScrollView 
       horizontal 
       showsHorizontalScrollIndicator={false} 
       style={styles.container}
     >
-      {months.map((month) => (
+      {months.map((month, index) => (
         <TouchableOpacity
           key={month}
           style={[
             styles.monthButton,
-            month === "March" && styles.selectedMonth
+            index === selectedMonth && styles.selectedMonth
           ]}
+          onPress={() => setSelectedMonth(index)}
         >
           <Text style={[
             styles.monthText,
-            month === "March" && styles.selectedMonthText
+            index === selectedMonth && styles.selectedMonthText
           ]}>
             {month}
           </Text>

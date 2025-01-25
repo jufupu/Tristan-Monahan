@@ -2,13 +2,23 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 
-export function Calendar() {
+interface CalendarProps {
+  selectedMonth: number;
+}
+
+export function Calendar({ selectedMonth }: CalendarProps) {
   const days = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", 
+    "September", "October", "November", "December"];
+
+  const currentDate = new Date();
+  const currentMonthIndex = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.monthText}>April, 2025</Text>
+        <Text style={styles.monthText}>{`${months[selectedMonth]}, ${currentYear}`}</Text>
         <TouchableOpacity style={styles.addButton}>
           <Feather name="plus" size={24} color="#141558" />
         </TouchableOpacity>
@@ -28,12 +38,12 @@ export function Calendar() {
             key={date}
             style={[
               styles.dateCell,
-              date === 17 && styles.selectedDate
+              selectedMonth === currentMonthIndex && date === currentDate.getDate() && styles.selectedDate
             ]}
           >
             <Text style={[
               styles.dateText,
-              date === 17 && styles.selectedDateText
+              selectedMonth === currentMonthIndex && date === currentDate.getDate() && styles.selectedDateText
             ]}>
               {date}
             </Text>
@@ -83,10 +93,10 @@ const styles = StyleSheet.create({
   datesGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
   },
   dateCell: {
-    width: '13%',
+    width: '14.28%',
     aspectRatio: 1,
     alignItems: 'center',
     justifyContent: 'center',
