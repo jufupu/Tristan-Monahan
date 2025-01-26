@@ -4,10 +4,12 @@ import { Feather } from '@expo/vector-icons';
 
 interface CalendarProps {
   selectedMonth: number;
+  selectedDate: Date;
+  setSelectedDate: (date: Date) => void;
 }
 
-export function Calendar({ selectedMonth }: CalendarProps) {
-  const days = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+export function Calendar({ selectedMonth, selectedDate, setSelectedDate }: CalendarProps) {
+  const days = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", 
     "September", "October", "November", "December"];
 
@@ -15,14 +17,24 @@ export function Calendar({ selectedMonth }: CalendarProps) {
   const currentMonthIndex = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
 
+  const daysInMonth = (month: number, year: number) => {
+    return new Date(year, month + 1, 0).getDate();
+  };
+
+  const firstDayOfMonth = new Date(currentYear, selectedMonth, 1).getDay();
+  const numberOfDays = daysInMonth(selectedMonth, currentYear);
+  const prevMonthDays = daysInMonth(selectedMonth - 1, currentYear);
+
+  const dates = [];
+  for (let i = firstDayOfMonth; i > 0; i--) {
+    dates.push({ date: prevMonthDays - i + 1, inCurrentMonth: false });
+  }
+  for (let i = 1; i <= numberOfDays; i++) {
+    dates.push({ date: i, inCurrentMonth: true });
+  }
+
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.monthText}>{`${months[selectedMonth]}, ${currentYear}`}</Text>
-        <TouchableOpacity style={styles.addButton}>
-          <Feather name="plus" size={24} color="#141558" />
-        </TouchableOpacity>
-      </View>
 
       <View style={styles.daysGrid}>
         {days.map((day) => (
@@ -33,22 +45,30 @@ export function Calendar({ selectedMonth }: CalendarProps) {
       </View>
 
       <View style={styles.datesGrid}>
-        {Array.from({ length: 31 }, (_, i) => i + 1).map((date) => (
-          <TouchableOpacity
-            key={date}
-            style={[
-              styles.dateCell,
-              selectedMonth === currentMonthIndex && date === currentDate.getDate() && styles.selectedDate
-            ]}
-          >
-            <Text style={[
-              styles.dateText,
-              selectedMonth === currentMonthIndex && date === currentDate.getDate() && styles.selectedDateText
-            ]}>
-              {date}
-            </Text>
-          </TouchableOpacity>
-        ))}
+        {dates.map(({ date, inCurrentMonth }, index) => {
+          const isToday = inCurrentMonth && selectedMonth === currentMonthIndex && date === currentDate.getDate();
+          const isSelected = inCurrentMonth && date === selectedDate.getDate() && selectedMonth === selectedDate.getMonth();
+
+          return (
+            <TouchableOpacity
+              key={index}
+              style={[
+                styles.dateCell,
+                isToday && styles.todayOutline,
+                isSelected && styles.selectedDate
+              ]}
+              onPress={() => setSelectedDate(new Date(currentYear, selectedMonth, date))}
+            >
+              <Text style={[
+                styles.dateText,
+                !inCurrentMonth && styles.greyedOutText,
+                isSelected && styles.selectedDateText
+              ]}>
+                {date}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
       </View>
     </View>
   );
@@ -57,29 +77,23 @@ export function Calendar({ selectedMonth }: CalendarProps) {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 16,
-    marginBottom: 24,
+    marginBottom: 10,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: 10,
   },
   monthText: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#141558',
   },
-  addButton: {
-    borderRadius: 20,
-    padding: 8,
-    borderWidth: 1,
-    borderColor: '#141558',
-  },
   daysGrid: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 8,
+    marginBottom: 6,
   },
   dayCell: {
     flex: 1,
@@ -107,8 +121,17 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#141558',
   },
+  greyedOutText: {
+    color: '#d3d3d3',
+  },
+  todayOutline: {
+    borderWidth: 1,
+    borderColor: '#141558',
+    borderRadius: 20,
+  },
   selectedDate: {
     backgroundColor: '#141558',
+    borderRadius: 20,
   },
   selectedDateText: {
     color: 'white',
