@@ -12,7 +12,7 @@ const Projects = () => {
         {
             title: 'ShowFlow - A Musical Theatre Centralisation App',
             description: 'My current project, developing a cross-platform mobile application using React Native, TypeScript, and Expo to centralise and streamline theatre productions.',
-            link: 'https://github.com/yourusername/project1',
+            link: 'https://github.com/jufupu/Tristan-Monahan/tree/main/my-portfolio',
             thumbnail: '/img/showflow.png',
         },
         {
