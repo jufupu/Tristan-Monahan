@@ -3,7 +3,6 @@ import { View, Text, SafeAreaView, StyleSheet, ScrollView, TouchableOpacity } fr
 import { Feather } from '@expo/vector-icons';
 import { Calendar } from '@/components/Calendar';
 import { EventCard } from '@/components/EventCard';
-import { Navigation } from '@/components/Navigation';
 import { MonthSelector } from '@/components/MonthSelector';
 import { useEvents } from '@/hooks/useEvents';
 
@@ -92,10 +91,6 @@ export function HomeScreen() {
           </View>
         </SafeAreaView>
       </ScrollView>
-
-      <View style={styles.navigationContainer}>
-        <Navigation />
-      </View>
     </View>
   );
 }

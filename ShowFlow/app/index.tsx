@@ -1,16 +1,10 @@
-import { StyleSheet, View } from 'react-native';
-import { HomeScreen } from '@/screens/HomeScreen';
+import { AppNavigator } from '@/navigation/AppNavigator';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-export default function TabOneScreen() {
+export default function App() {
   return (
-    <View style={styles.container}>
-      <HomeScreen />
-    </View>
+    <SafeAreaProvider>
+      <AppNavigator />
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
