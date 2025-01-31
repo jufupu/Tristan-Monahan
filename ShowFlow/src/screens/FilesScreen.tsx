@@ -1,31 +1,36 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-
-const files = [
-  { id: '1', name: 'Document 1', type: 'pdf', count: 18 },
-  { id: '2', name: 'Audio 1', type: 'audio', count: 20 },
-  { id: '3', name: 'Document 2', type: 'pdf', count: 42 },
-  { id: '4', name: 'Audio 2', type: 'audio', count: 28 },
-  { id: '5', name: 'Document 3', type: 'pdf', count: 30 },
-  { id: '6', name: 'Audio 3', type: 'audio', count: 68 },
-];
 
 export function FilesScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Files</Text>
-      <FlatList
-        data={files}
-        numColumns={2}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <TouchableOpacity style={styles.fileItem}>
-            <Feather name={item.type === 'pdf' ? 'file-text' : 'music'} size={40} color="#141558" />
-            <Text style={styles.fileName}>{item.name} ({item.count})</Text>
-          </TouchableOpacity>
-        )}
-      />
+      <View style={styles.header}>
+        <View>
+            <Text style={styles.title}>Files</Text>
+            <Text style={styles.subtitle}>Go listen, study, learn!!</Text>
+        </View>
+      </View>
+
+      <View style={styles.content}>
+        <TouchableOpacity style={styles.fileOption}>
+          <Feather name="file-text" size={50} color="#141558" />
+          <Text style={styles.optionTitle}>Scripts</Text>
+          <Text style={styles.optionCount}>12 files</Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity style={styles.fileOption}>
+          <Feather name="music" size={50} color="#141558" />
+          <Text style={styles.optionTitle}>Music</Text>
+          <Text style={styles.optionCount}>8 files</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.fileOption}>
+          <Feather name="video" size={50} color="#141558" />
+          <Text style={styles.optionTitle}>Videos</Text>
+          <Text style={styles.optionCount}>5 files</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -40,14 +45,27 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: '#141558',
-    marginBottom: 16,
+    marginBottom: 24,
   },
-  fileItem: {
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#141558',
+  },
+  subtitle: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#141558',
+  },
+  content: {
     flex: 1,
+    justifyContent: 'center',
+    gap: 20,
+  },
+  fileOption: {
     backgroundColor: 'white',
     borderRadius: 12,
-    padding: 16,
-    margin: 8,
+    padding: 24,
     alignItems: 'center',
     justifyContent: 'center',
     shadowColor: '#000',
@@ -55,11 +73,17 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 2,
+    height: '30%',
   },
-  fileName: {
-    marginTop: 8,
-    fontSize: 14,
+  optionTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
     color: '#141558',
-    textAlign: 'center',
+    marginTop: 16,
+  },
+  optionCount: {
+    fontSize: 14,
+    color: '#666',
+    marginTop: 8,
   },
 }); 

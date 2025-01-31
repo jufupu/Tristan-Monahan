@@ -53,6 +53,16 @@ export function HomeScreen() {
 
   const dayOfWeek = selectedDate.toLocaleDateString('en-US', { weekday: 'long' });
 
+  // Determine the current time of day
+  const currentHour = new Date().getHours();
+  let greeting = "Good Morning";
+
+  if (currentHour >= 12 && currentHour < 18) {
+    greeting = "Good Afternoon";
+  } else if (currentHour >= 18) {
+    greeting = "Good Evening";
+  }
+
   return (
     <View style={styles.container}>
       <ScrollView 
@@ -63,7 +73,7 @@ export function HomeScreen() {
         <SafeAreaView>
           <View style={styles.header}>
             <View>
-              <Text style={styles.title}>Good Morning.</Text>
+              <Text style={styles.title}>{greeting}.</Text>
               <Text style={styles.subtitle}>GLOC</Text>
             </View>
             <TouchableOpacity style={styles.notificationButton}>
