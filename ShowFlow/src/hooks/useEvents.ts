@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
 import { db } from '../config/firebase';
 
-interface Event {
+export interface Event {
   id: string;
   title: string;
   time: string;
@@ -11,6 +11,7 @@ interface Event {
   date: string;
   participants: string[];
   variant: 'purple' | 'teal';
+  description: string;
 }
 
 export function useEvents() {
