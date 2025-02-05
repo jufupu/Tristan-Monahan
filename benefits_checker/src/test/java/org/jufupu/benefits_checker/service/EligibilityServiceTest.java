@@ -8,6 +8,7 @@ import org.jufupu.benefits_checker.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Eligibility Service Tests")
 class EligibilityServiceTest {
@@ -17,29 +18,31 @@ class EligibilityServiceTest {
     @BeforeEach
     void setUp() {
         benefits = Arrays.asList(
-            new Benefit("Test Benefit", 30000.0, 4, "New York")
+            new Benefit("Test Benefit", 30000.0, 4, "Glasgow")
         );
         eligibilityService = new EligibilityService(benefits);
     }
 
     @Test
-    void eligibleUserShouldPass() {
-        User eligibleUser = new User("John", 25000.0, 3, "New York");
-        eligibilityService.checkEligibility(eligibleUser);
-        // Test passes if no exception is thrown
+    void shouldBeEligibleForBenefit() {
+        User user = new User("John", 25000.0, 3, "Glasgow");
+        List<Benefit> eligibleBenefits = eligibilityService.checkEligibility(user);
+        assertFalse(eligibleBenefits.isEmpty());
+        assertEquals(1, eligibleBenefits.size());
+        assertEquals("Test Benefit", eligibleBenefits.get(0).getName());
     }
 
     @Test
-    void ineligibleIncomeShouldNotPass() {
-        User highIncomeUser = new User("Rich", 35000.0, 3, "New York");
-        eligibilityService.checkEligibility(highIncomeUser);
-        // Test passes if no exception is thrown
+    void shouldNotBeEligibleDueToIncome() {
+        User user = new User("Rich", 35000.0, 3, "Glasgow");
+        List<Benefit> eligibleBenefits = eligibilityService.checkEligibility(user);
+        assertTrue(eligibleBenefits.isEmpty());
     }
 
     @Test
     void ineligibleLocationShouldNotPass() {
         User wrongLocationUser = new User("Jane", 25000.0, 3, "Boston");
-        eligibilityService.checkEligibility(wrongLocationUser);
-        // Test passes if no exception is thrown
+        List<Benefit> eligibleBenefits = eligibilityService.checkEligibility(wrongLocationUser);
+        assertTrue(eligibleBenefits.isEmpty());
     }
 } 
