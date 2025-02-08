@@ -1,0 +1,7 @@
+org/jufupu/dnd_damage/model/Move.class
+org/jufupu/dnd_damage/service/DamageCalculatorService.class
+org/jufupu/dnd_damage/service/DiceRoller.class
+org/jufupu/dnd_damage/controller/DamageController$DamageResponse.class
+org/jufupu/dnd_damage/controller/HelloController.class
+org/jufupu/dnd_damage/Dnd_damage.class
+org/jufupu/dnd_damage/controller/DamageController.class
