@@ -21,7 +21,7 @@ The D&D Damage Multiplier Calculator is an application that helps me calculating
 
 ### Development Tools
 - Postman (API testing)
-- IntelliJ IDEA/VS Code
+- VS Code
 
 ## Features
 
