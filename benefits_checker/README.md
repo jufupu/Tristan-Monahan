@@ -99,6 +99,10 @@ json
 ### Frontend (React)
 
 - Navigate to the frontend directory.
+  ```bash
+  open benefits_checker_frontend
+  cd benefit_checker_frontend
+  ```
 - Install dependencies:
   ```bash
   npm install
