@@ -71,20 +71,22 @@ The Benefits Eligibility Checker is a web application designed to assess an indi
 **Request Body**:
 
 json
+```bash
 {
 "name": "John Doe",
 "income": 30000,
 "familySize": 3,
 "location": "Glasgow"
 }
-
+```
 **Response**:
 
 json
+```bash
 {
 "eligibility": "Eligible for Low income support, Child Support Grant, Disability Living Allowance"
 }
-
+```
 ## Running the Project
 
 ### Backend (Spring Boot)
