@@ -5,7 +5,7 @@ import MultiplierToggles from './components/MultiplierToggles';
 
 const moves = [
   {
-    name: "shortsword",
+    name: "Shortsword",
     damageType: "Physical",
     diceCount: 1,
     diceSides: 6,
