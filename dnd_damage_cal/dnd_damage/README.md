@@ -59,7 +59,10 @@ mvn spring-boot:run
 
 ```json
 {
-  "moveName": "shortsword"
+  "name": "Shortsword",
+    "diceCount": 3,
+    "diceSides": 6,
+    "modifier": 13
 }
 ```
 
