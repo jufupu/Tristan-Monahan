@@ -80,6 +80,8 @@ cd frontend
 npm install
 ```
 
+## Run the Application
+
 3. Start the frontend:
 
 ```bash
