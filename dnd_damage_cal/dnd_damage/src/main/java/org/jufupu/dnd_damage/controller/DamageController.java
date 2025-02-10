@@ -4,10 +4,17 @@ import org.jufupu.dnd_damage.model.Move;
 import org.jufupu.dnd_damage.service.DamageCalculatorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/damage")
+@CrossOrigin(origins = "http://localhost:3000")
 public class DamageController {
     private static final Logger logger = LoggerFactory.getLogger(DamageController.class);
     private final DamageCalculatorService damageCalculatorService;
@@ -27,11 +34,17 @@ public class DamageController {
     public DamageResponse calculateDamage(@RequestBody Move move, 
                                         @RequestParam(defaultValue = "false") boolean isCritical,
                                         @RequestParam(defaultValue = "false") boolean isSneakAttack) {
-        logger.info("Calculate endpoint called with move: {}, critical: {}, sneakAttack: {}", 
-                   move, isCritical, isSneakAttack);
+        logger.info("Received move: {}", move);
+        logger.info("Critical: {}, SneakAttack: {}", isCritical, isSneakAttack);
         
-        int damage = damageCalculatorService.calculateDamage(move, isCritical, isSneakAttack);
-        return new DamageResponse(damage);
+        try {
+            int damage = damageCalculatorService.calculateDamage(move, isCritical, isSneakAttack);
+            logger.info("Calculated damage: {}", damage);
+            return new DamageResponse(damage);
+        } catch (Exception e) {
+            logger.error("Error calculating damage", e);
+            throw e;
+        }
     }
 
     // Response class

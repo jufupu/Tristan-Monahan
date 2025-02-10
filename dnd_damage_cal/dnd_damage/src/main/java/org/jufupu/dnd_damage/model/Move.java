@@ -2,6 +2,7 @@ package org.jufupu.dnd_damage.model;
 
 public class Move {
     private String name;
+    private String damageType;
     private int diceCount;
     private int diceSides;
     private int modifier;
@@ -47,5 +48,13 @@ public class Move {
     
     public void setModifier(int modifier) {
         this.modifier = modifier;
+    }
+
+    public String getDamageType() {
+        return damageType;
+    }
+
+    public void setDamageType(String damageType) {
+        this.damageType = damageType;
     }
 }

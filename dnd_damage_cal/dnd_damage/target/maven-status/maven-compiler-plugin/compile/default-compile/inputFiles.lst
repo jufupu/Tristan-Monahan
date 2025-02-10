@@ -1,5 +1,6 @@
 /Users/tristanmonahan/Documents/GitHub/Tristan-Monahan/dnd_damage_cal/dnd_damage/src/main/java/org/jufupu/dnd_damage/controller/HelloController.java
 /Users/tristanmonahan/Documents/GitHub/Tristan-Monahan/dnd_damage_cal/dnd_damage/src/main/java/org/jufupu/dnd_damage/service/DamageCalculatorService.java
+/Users/tristanmonahan/Documents/GitHub/Tristan-Monahan/dnd_damage_cal/dnd_damage/src/main/java/org/jufupu/dnd_damage/config/WebConfig.java
 /Users/tristanmonahan/Documents/GitHub/Tristan-Monahan/dnd_damage_cal/dnd_damage/src/main/java/org/jufupu/dnd_damage/model/Move.java
 /Users/tristanmonahan/Documents/GitHub/Tristan-Monahan/dnd_damage_cal/dnd_damage/src/main/java/org/jufupu/dnd_damage/controller/DamageController.java
 /Users/tristanmonahan/Documents/GitHub/Tristan-Monahan/dnd_damage_cal/dnd_damage/src/main/java/org/jufupu/dnd_damage/service/DiceRoller.java
