@@ -49,8 +49,10 @@ git clone https://github.com/yourusername/dnd-damage-calculator.git
 
 ```bash
 mvn spring-boot:run
+```
 
 3. Test API using Postman:
+```bash
 - URL: `http://localhost:8080/api/damage/calculate?isCritical=true&isSneakAttack=false`
 - Method: `POST`
 - Body (JSON):
