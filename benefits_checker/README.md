@@ -120,5 +120,3 @@ json
 - **Cloud Deployment** – Deploy using AWS, Azure, or Heroku.
 - **Enhanced UI/UX** – Improve design and add animations.
 - **Unit & Integration Testing** – Increase test coverage for robustness.
-
-## Conclusion
