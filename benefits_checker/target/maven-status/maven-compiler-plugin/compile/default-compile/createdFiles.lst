@@ -1,0 +1,7 @@
+org/jufupu/benefits_checker/service/EligibilityService.class
+org/jufupu/benefits_checker/controller/HomeController.class
+org/jufupu/benefits_checker/model/User.class
+org/jufupu/benefits_checker/controller/BenefitController.class
+org/jufupu/benefits_checker/BenefitsCheckerApplication.class
+org/jufupu/benefits_checker/model/Benefit.class
+org/jufupu/benefits_checker/config/BenefitConfig.class
