@@ -10,6 +10,18 @@ const Projects = () => {
             thumbnail: '/img/fitshop_rebranding.png',
         },
         {
+            title: 'Hackney Collective',
+            description: 'A solo interior designer needed a client facing website she could drive traffic too. Designed on figma, Built with typescript, Both desktop and mobile optimised.',
+            link: 'https://edinburgh-interiors.replit.app/',
+            thumbnail: '/img/hackney-collective-showcase.png',
+        },
+        {
+            title: 'Lavender Contracts',
+            description: 'A local cleaning company in scotland. Website built to drive traffic too. Designed on Figma. Built with Typescript. Both desktop and mobile optimised.',
+            link: 'https://lavendercleaning.replit.app/',
+            thumbnail: '/img/Lavender_Contracts_showcase.png',
+        },
+        {
             title: 'ShowFlow - A Musical Theatre Centralisation App',
             description: 'My current project, developing a cross-platform mobile application using React Native, TypeScript, and Expo to centralise and streamline theatre productions.',
             link: 'https://github.com/yourusername/project1',
@@ -21,12 +33,7 @@ const Projects = () => {
             link: 'https://github.com/jufupu/Tristan-Monahan/tree/main/my-book-case',
             thumbnail: '/img/booknook.png',
         },
-        {
-            title: 'Musical Theatre Script Learner',
-            description: 'Created a Musical Theatre Script Learner application to aid in memorizing scripts and lyrics for performances. Technologies Used: C#, Windows Forms, SQLite, Basic Input Validation.',
-            link: 'https://github.com/jufupu/Tristan-Monahan/tree/main/ScriptLearnerApp',
-            thumbnail: '/img/script_learning_app.png',
-        }, 
+        
     ];
     return (
         <>
