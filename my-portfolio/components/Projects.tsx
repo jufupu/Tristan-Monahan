@@ -12,13 +12,13 @@ const Projects = () => {
         {
             title: 'Hackney Collective',
             description: 'A solo interior designer needed a client facing website she could drive traffic too. Designed on figma, Built with typescript, Both desktop and mobile optimised.',
-            link: 'https://edinburgh-interiors.replit.app/',
+            link: 'https://hackneycollective.co.uk/',
             thumbnail: '/img/hackney-collective-showcase.png',
         },
         {
             title: 'Lavender Contracts',
             description: 'A local cleaning company in scotland. Website built to drive traffic too. Designed on Figma. Built with Typescript. Both desktop and mobile optimised.',
-            link: 'https://lavendercleaning.replit.app/',
+            link: 'https://lavendercontracts.co.uk/',
             thumbnail: '/img/Lavender_Contracts_showcase.png',
         },
         {
